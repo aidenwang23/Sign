@@ -1,29 +1,31 @@
 public class Sign
 {
-    private String phrase; 
+    private String message; 
     private int width;
-    private int index;
 
     public Sign(String a, int b)
     {
-        phrase = a;
+        message = a;
         width = b;
     }
 
     public int numberOfLines()
     {
-        if(phrase.length() <= width) return 1;
-        if(phrase.length()%width > 0) return phrase.length()/width + 1;
-        return phrase.length()/width;
+        int lines = message.length()/width;
+        if(message.length()%width == 0) return lines;
+        return lines + 1;
     }
 
     public String getLines()
     {
-        String copy = phrase;
-        for(int i=0; i<phrase.length(); i++)
-            index++;
-            copy += phrase.substring(index-1, index);
-            if(index%width == 0) copy+=";";
-        return copy;
+        if(message.length()==0) return null;
+        String s = "";
+        int i = 0;
+        while(i < message.length()){
+            s+=message.substring(i,i+1);
+            i++;
+            if(i%width == 0 && i != message.length()) s+=";";
+        }
+        return s;
     }
 }
